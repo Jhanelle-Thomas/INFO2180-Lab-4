@@ -5,21 +5,36 @@ window.onload = function() {
 	var end = false;
 	var outOfBounds = false;
 	
-	/*
-	var boundaryID = document.getElementById("boundary1");
-	boundaryID.onmouseover = function() {
-		boundaryID.style.backgroundColor = "red";
-	}
-	*/
-	
 	var boundaries = document.getElementsByClassName("boundary");
 	for(var i = 0; i < boundaries.length; i++) {	
         var boundary = boundaries[i];
         boundary.onmouseover = function() {
 			lost = true;
-			this.style.backgroundColor = "red";
+			for(var x = 0; x <boundaries.length; x++) {
+				boundaries[x].style.backgroundColor = "#f88";
+			}
+			
 		};
     }
+	
+	/*
+	var boundaries = document.getElementsByClassName("boundary");
+	for(var i = 0; i < boundaries.length; i++) {	
+        var boundary = boundaries[i];
+        boundary.onmouseover = function() {
+			this.className = "youlose";
+			lost = true;
+		};
+    }
+	
+	var boundaries = document.querySelectorAll(".boundary");
+	for(var i = 0; i < boundaries.length; i++) {	
+        var boundary = boundaries[i];
+        boundary.onmouseover = function() {
+			this.className = "youlose";
+			lost = true;
+		};
+	}*/
 	
 	var startGame = document.getElementById("start");
 	startGame.onmouseover = function() {
