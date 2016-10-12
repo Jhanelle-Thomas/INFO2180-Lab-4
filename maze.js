@@ -15,8 +15,7 @@ window.onload = function() {
 			}
 			
 		};
-    }
-	
+    }	
 	/*
 	var boundaries = document.getElementsByClassName("boundary");
 	for(var i = 0; i < boundaries.length; i++) {	
@@ -46,10 +45,19 @@ window.onload = function() {
 		
 	};
 	
+	var out = document.getElementsByTagName("body")[0];
+	out.onmouseover = function() {
+		if (start) {
+			outOfBounds = true;
+		}
+	}
+	
 	var endGame = document.getElementById("end");
 	endGame.onmouseover = function() {
 		if (start && !lost) {
 			win = true;
+			var message = document.getElementsByTagName("h1")[0];
+			message.innerHTML = "YOU WIN!!!!";
 		} else if (start && outOfBounds) {
 			lost = true;
 		}
