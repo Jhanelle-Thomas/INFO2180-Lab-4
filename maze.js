@@ -1,66 +1,60 @@
 window.onload = function() {
-	var lost = false;
 	var win = false;
 	var start = false;
-	var end = false;
-	var outOfBounds = false;
 	
+	var message = document.getElementById("status");;
 	var boundaries = document.getElementsByClassName("boundary");
-	for(var i = 0; i < boundaries.length; i++) {	
-        var boundary = boundaries[i];
-        boundary.onmouseover = function() {
-			lost = true;
-			for(var x = 0; x <boundaries.length; x++) {
-				boundaries[x].style.backgroundColor = "#f88";
+	var maze = document.getElementById("maze");
+	var startGame = document.getElementById("start");
+	var endGame = document.getElementById("end");
+	
+	function youLose(mes) {
+		for(var x = 0; x <boundaries.length - 1; x++) {
+			boundaries[x].className = "boundary youlose";
+		}
+		message.innerHTML = mes;
+	}
+	
+	function youWin(mes) {
+		win = true;
+		message.innerHTML = mes;
+	}
+	
+	for(var i = 0; i < boundaries.length - 1; i++) {	
+        boundaries[i].onmouseover = function() {
+			if(!win && start) {
+				youLose("YOU LOST!!!")
 			}
-			
-		};
-    }	
-	/*
-	var boundaries = document.getElementsByClassName("boundary");
-	for(var i = 0; i < boundaries.length; i++) {	
-        var boundary = boundaries[i];
-        boundary.onmouseover = function() {
-			this.className = "youlose";
-			lost = true;
 		};
     }
 	
-	var boundaries = document.querySelectorAll(".boundary");
-	for(var i = 0; i < boundaries.length; i++) {	
-        var boundary = boundaries[i];
-        boundary.onmouseover = function() {
-			this.className = "youlose";
-			lost = true;
-		};
-	}*/
-	
-	var startGame = document.getElementById("start");
 	startGame.onmouseover = function() {
-		if (start) {
-			lost = true;
+		if (start && !win) {
+			youLose("YOU LOST!!!");
 		} else {
 			start = true;
-		}
+		}		
+	};
+	
+	startGame.onclick = function() {
+		win = false;
+		start = true;
 		
+		message.innerHTML = "Move your mouse over the \"S\" to begin.";
+		for(var x = 0; x <boundaries.length - 1; x++) {
+				boundaries[x].className = "boundary";
+		}		
 	};
 	
-	var out = document.getElementsByTagName("body")[0];
-	out.onmouseover = function() {
-		if (start) {
-			outOfBounds = true;
-		}
-	}
-	
-	var endGame = document.getElementById("end");
 	endGame.onmouseover = function() {
-		if (start && !lost) {
-			win = true;
-			var message = document.getElementsByTagName("h1")[0];
-			message.innerHTML = "YOU WIN!!!!";
-		} else if (start && outOfBounds) {
-			lost = true;
+		if (start) {
+			youWin("YOU WIN!!!!");
 		}
 	};
+	
+	maze.onmouseleave = function() {
+		if(start && !win) {
+			youLose("YOU LOST!!!");
+		}		
+	}
 }
-
