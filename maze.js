@@ -8,29 +8,29 @@ window.onload = function() {
 	var startGame = document.getElementById("start");
 	var endGame = document.getElementById("end");
 	
-	function youLose(mes) {
+	function youLose() {
 		for(var x = 0; x <boundaries.length - 1; x++) {
 			boundaries[x].className = "boundary youlose";
 		}
-		message.innerHTML = mes;
+		message.innerHTML = "YOU LOST!!!";
 	}
 	
-	function youWin(mes) {
+	function youWin() {
 		win = true;
-		message.innerHTML = mes;
+		message.innerHTML = "YOU WIN!!!!";
 	}
 	
 	for(var i = 0; i < boundaries.length - 1; i++) {	
         boundaries[i].onmouseover = function() {
 			if(!win && start) {
-				youLose("YOU LOST!!!")
+				youLose()
 			}
 		};
     }
 	
 	startGame.onmouseover = function() {
 		if (start && !win) {
-			youLose("YOU LOST!!!");
+			youLose();
 		} else {
 			start = true;
 		}		
@@ -48,13 +48,13 @@ window.onload = function() {
 	
 	endGame.onmouseover = function() {
 		if (start) {
-			youWin("YOU WIN!!!!");
+			youWin();
 		}
 	};
 	
 	maze.onmouseleave = function() {
 		if(start && !win) {
-			youLose("YOU LOST!!!");
+			youLose();
 		}		
 	}
 }
