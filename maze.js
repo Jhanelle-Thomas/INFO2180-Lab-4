@@ -10,9 +10,9 @@ window.onload = function() {
 	var out = document.getElementsByTagName("body")[0];
 	
 	var left = maze.offsetLeft;
-	var right = maze.offsetLeft + maze.offsetWidth + 50;
+	var right = maze.offsetLeft + maze.offsetWidth;
 	var t = maze.offsetTop;
-	var bottom = maze.offsetTop + maze.offsetHeight + 50;
+	var bottom = maze.offsetTop + maze.offsetHeight;
 	
 	function youLose() {
 		for(var x = 0; x <boundaries.length - 1; x++) {
