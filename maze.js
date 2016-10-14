@@ -7,6 +7,12 @@ window.onload = function() {
 	var maze = document.getElementById("maze");
 	var startGame = document.getElementById("start");
 	var endGame = document.getElementById("end");
+	var out = document.getElementsByTagName("body")[0];
+	
+	var left = maze.offsetLeft;
+	var right = maze.offsetLeft + maze.offsetWidth + 50;
+	var t = maze.offsetTop;
+	var bottom = maze.offsetTop + maze.offsetHeight + 50;
 	
 	function youLose() {
 		for(var x = 0; x <boundaries.length - 1; x++) {
@@ -51,10 +57,21 @@ window.onload = function() {
 			youWin();
 		}
 	};
-	
+	 
+	/* 
 	maze.onmouseleave = function() {
 		if(start && !win) {
 			youLose();
 		}		
+	}*/
+
+	out.onmousemove = function(event) {
+		if (start && !win) {
+			mouseX = event.clientX;
+			mouseY = event.clientY;
+			if (mouseX > right || mouseX < left || mouseY > bottom || mouseY < t) {
+					youLose();						
+			}
+		}
 	}
 }
